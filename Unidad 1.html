@@ -1,0 +1,137 @@
+<html>
+<head>
+<title> Arquitectura de computadoras </title>
+</head>
+
+<body background="imag/tecno.jpg">
+
+<center><h1>1.1	Modelos de arquitecturas de computo </h1>
+<h2>1.1.1 Clásicas</h2>
+<P>Estas arquitecturas se desarrollaron en las primeras computadoras electromecánicas y de tubos de vacío. Aun son usadas en procesadores empotrados de gama baja y son la base de la mayoría de las arquitecturas modernas.</P>
+<P>Arquitectura Mauchly-Eckert (Von Newman)</P>
+<P>Esta arquitectura fue utilizada en la computadora ENIAC. Consiste en una unidad central de proceso que se comunica a través de un solo bus con un banco de memoria en donde se almacenan tanto los códigos de instrucción del programa, como los datos que serán procesados por este.  </P>
+<P>Esta arquitectura es la más empleada en la actualidad ya, que es muy versátil. Ejemplo de esta versatilidad es el funcionamiento de los compiladores, los cuales son programas que toman como entrada un archivo de texto conteniendo código fuente y generan como datos de salida, el código máquina que corresponde a dicho código fuente (Son programas que crean o modifican otros programas).  </P>
+<P>Arquitectura Harvard </P>
+<P>Esta arquitectura surgió en la universidad del mismo nombre, poco después de que la arquitectura Von Newman apareciera en la universidad de Princeton. Al igual que en la arquitectura Von Newman, el programa se almacena como un código numérico en la memoria, pero no en el mismo espacio de memoria ni en el mismo formato que los datos. Por ejemplo, se pueden almacenar las instrucciones en doce bits en la memoria de programa, mientras los datos de almacenan en ocho bits en una memoria aparte.  </P>
+
+<h2>1.1.2 Segmentadas</h2>
+<P>Las arquitecturas segmentadas o con segmentación del cauce buscan mejorar el desempeño realizando paralelamente varias etapas del ciclo de instrucción al mismo tiempo. El procesador se divide en varias unidades funcionales independientes y se dividen entre ellas el procesamiento de las instrucciones.</P>
+<P>Para comprender mejor esto, supongamos que un procesador simple tiene un ciclo de instrucción sencillo consistente solamente en una etapa de búsqueda del código de instrucción y en otra etapa de ejecución de la instrucción. En un procesador sin segmentación del cauce, las dos etapas se realizarían de manera secuencial para cada una de las instrucciones, como lo muestra la siguiente figura.</P>
+<P>En un procesador con segmentación del cauce, cada una de estas etapas se asigna a una unidad funcional diferente, la búsqueda a la unidad de búsqueda y la ejecución a la unidad de ejecución. Estas unidades pueden trabajar en forma paralela en instrucciones diferentes. Estas unidades se comunican por medio de una cola de instrucciones en la que la unidad de búsqueda coloca los códigos de instrucción que leyó para que la unidad de ejecución los tome de la cola y los ejecute. Esta cola se parece a un tubo donde las instrucciones entran por un extremo y salen por el otro. De esta analogía proviene el nombre en inglés: Pipelining o entubamiento. </P>
+
+
+<h2>1.1.3 Multiprocesamiento</h2>
+<P>Cuando se desea incrementar el desempeño más aya de lo que permite la técnica de segmentación del cauce (limite teórico de una instrucción por ciclo de reloj), se requiere utilizar más de un procesador para la ejecución del programa de aplicación. </P>
+<P>Las CPU de multiprocesamiento se clasifican de la siguiente manera (Clasificación de Flynn): </P>
+<P>SISO – (Single Instruction, Single Operand) computadoras Monoprocesador </P>
+<P>SIMO – (Single Instruction, Multiple Operand) procesadores vectoriales, Exenciones MMX </P>
+<P>MISO – (Multiple Instruction, Single Operand) No implementado </P>
+<P>MIMO – (Multiple Instruction, Multiple Operand) sistemas SMP, Clusters, GPUs </P>
+<P>Procesadores vectoriales – Son computadoras pensadas para aplicar un mismo algoritmo numérico a una serie de datos matriciales, en especial en la simulación de sistemas físicos complejos, tales como simuladores para predecir el clima, explosiones atómicas, reacciones químicas complejas, etc., donde los datos son representados como grandes números de datos en forma matricial sobre los que se deben se aplicar el mismo algoritmo numérico. </P>
+<P>La mayoría de los procesadores modernos incluye algunas instrucciones de tipo vectorial, tales como las extensiones al conjunto de instrucciones tales como MMX y SSE. Estas instrucciones les permiten procesar flujos multimedia más eficientemente. </P>
+<P>Los Procesadores Digitales de Señales (DSP), son procesadores especializados en el procesamiento de señales tales como audio, vídeo, radar, sonar, radio, etc. Cuentan con instrucciones tipo vectorial que los hace muy aptos para dicha aplicación. Suelen utilizarse en conjunto con un microcontrolador en dispositivos como reproductores de audio, reproductores de dvd y Blueray, teléfonos celulares, sistemas de entretenimiento, sistemas de adquisición de datos, instrumentos médicos, controles industriales, etc. </P>
+
+<h1>1.2	Análisis de los componentes </h1>
+<h2>1.2.1 Arquitecturas</h2>
+<P>Además de las Arquitecturas clásicas  mencionadas anteriormente, en la actualidad han aparecido Arquitecturas híbridas entre la Von Newman y la Harvard, buscando conservar la flexibilidad, pero mejorando el rendimiento. </P>
+<P>Esta escuela pretende aplicar un enfoque totalmente distinto al tradicional hasta entonces, que pasó a conocerse como computadoras de conjunto complejo de instrucciones (CISC) para diferenciarla de la nueva tendencia. </P>
+<P>Se implementan instrucciones especiales que realizan funciones complejas, de manera que un programador puede encontrar con seguridad, una instrucción especial que realiza en hardware la función que el necesita.  </P>
+
+
+
+<h2>1.2.1.1 Unidad Central de Procesamiento (CPU)</h2>
+<P>Los CPUs modernos pueden clasificarse de acuerdo a varias características, tales como: el tamaño del ALU o del Bus de conexión al exterior (8, 16, 32, 64 bits), si tienen cauce pipeline, si son tipo CISC o RISC, Von Newmann o Harvard y si solo tienen instrucciones enteras o implementan también instrucciones de punto flotante. Las características más importantes a considerar al escoger un CPU para usarlo (idealmente) en una aplicación, son: </P>
+<P>• Modelo del programador (Conjunto de registros que el programador puede utilizar), forman el modelo mental del CPU que el programador utiliza al programar en ensamblador. </P>
+<P>• Conjunto de instrucciones que puede ejecutar el CPU </P>
+<P>• Modos de direccionamiento que pueden usarse para obtener los operandos de las instrucciones. </P>
+<P>• Ciclo de instrucción (el conjunto de pasos que realiza el CPU para procesar cada instrucción) </P>
+<P>• Buses de interconexión, usados para que el CPU lea y escriba a la memoria y a los dispositivos de entrada y salida. </P>
+
+
+<h2>1.2.2 Memoria</h2>
+<P>Una memoria es un dispositivo que puede mantenerse en por lo menos dos estados estables por un cierto periodo de tiempo. Cada uno de estos estados estables puede utilizarse para representar un bit.  </P>
+<P>El número de bits que puede almacenar cada localidad de memoria es conocido como el ancho de palabra de la memoria. Coincide con el ancho del bus de datos. </P>
+
+
+
+
+<h2>1.2.2.1 Manejo de memoria</h2>
+<P>Se produce bajo el control directo y continuo del programa que solicita la operación de E/S. tanto en la entrada y salida programada como con interrupciones, el procesador es responsable de extraer los datos de la memoria en una salida, y almacenar los datos en la memoria principal. El problema con la E/S es que el procesador tiene que esperar un tiempo considerable hasta que el módulo en cuestión esté preparado para recibir o transmitir datos. </P>
+
+<h2>1.2.2.2 Memoria principal</h2>
+<P>La memoria de semiconductor usa circuitos integrados basados en semiconductores para almacenar información. Un chip de memoria de semiconductor puede contener millones de minúsculos transistores o condensadores. Existen memorias de semiconductor de ambos tipos: volátiles y no volátiles. En las computadoras modernas, la memoria principal consiste casi exclusivamente en memoria de semiconductor volátil y dinámica, también conocida como memoria dinámica de acceso aleatorio o más comúnmente RAM, su acrónimo inglés. Con el cambio de siglo, ha habido un crecimiento constante en el uso de un nuevo tipo de memoria de semiconductor no volátil llamado memoria flash. Dicho crecimiento se ha dado, principalmente en el campo de las memorias fuera de línea en computadoras domésticas. Las memorias de semiconductor no volátiles se están usando también como memorias secundarias en varios dispositivos de electrónica avanzada y computadoras especializadas y no especializadas. </P>
+
+
+<h2>1.2.2.3 Memoria Caché</h2>
+<P>la caché es la memoria de acceso rápido de una computadora, que guarda temporalmente las últimas informaciones procesadas. </P>
+<P>La memoria caché es un búfer especial de memoria que poseen las computadoras, que funciona de manera similar a la memoria principal, pero es de menor tamaño y de acceso más rápido. Es usada por el microprocesador para reducir el tiempo de acceso a datos ubicados en la memoria principal que se utilizan con más frecuencia. </P>
+<P>La caché es una memoria que se sitúa entre la unidad central de procesamiento (CPU) y la memoria de acceso aleatorio (RAM) para acelerar el intercambio de datos. </P>
+<P>Cuando se accede por primera vez a un dato, se hace una copia en la caché; los accesos siguientes se realizan a dicha copia, haciendo que sea menor el tiempo de acceso medio al dato. Cuando el microprocesador necesita leer o escribir en una ubicación en memoria principal, primero verifica si una copia de los datos está en la caché; si es así, el microprocesador de inmediato lee o escribe en la memoria caché, que es mucho más rápido que de la lectura o la escritura a la memoria principal. </P>
+
+
+<h1>1.2.3 Manejo de la entrada/salida </h1>
+<h2>1.2.3.1 Módulos de entrada/salida</h2>
+<P>Los módulos de entrada y salida están conectados con el procesador y la memoria principal, y cada uno controla uno o más dispositivos externos. La arquitectura de E/S es su interfaz con el exterior, esta arquitectura se diseña de manera que permita una forma sistemática de controlar las interacciones con el mundo exterior y proporcione al sistema operativo la información que necesita para gestionar la actividad de E/S. Hay tres técnicas de E/S principales: </P>
+
+<h2>1.2.3.2 Entrada/salida programada</h2>
+<P>Se produce bajo el control directo y continuo del programa que solicita la operación de E/S. tanto en la entrada y salida programada como con interrupciones, el procesador es responsable de extraer los datos de la memoria en una salida, y almacenar los datos en la memoria principal. El problema con la E/S es que el procesador tiene que esperar un tiempo considerable hasta que el modulo en cuestión esté preparado para recibir o transmitir datos. </P>
+
+<h2>1.2.3.3 Entrada y salida mediante interrupciones</h2>
+<P>El programa genera una orden de E/S y después continúa ejecutándose hasta que el hardware lo interrumpe para indicar que la operación ha concluido. La entrada y salida con interrupciones, aunque es más eficiente que la sencilla, también requiere la intervención activa del procesador para transferir los datos entre la memoria y el módulo de E/S. </P>
+
+
+<h2>1.2.3.4 Acceso directo a memoria</h2>
+<P>Un procesador de E/S específico toma el control de la operación para transferir un bloque de datos. El módulo DMA(Acceso Directo a Memoria) es capaz de imitar al procesador y, de hecho, es capaz de transferir datos desde memoria a través del bus del sistema. El módulo DMA debe utilizar el bus solo cuando el procesador no lo necesita, o debe forzar al procesador a que suspenda temporalmente su funcionamiento. </P>
+
+<h2>1.2.3.5 Canales de entrada/salida</h2>
+<P>El canal de entrada y salida representa una ampliación del concepto de DMA. Un canal de entrada y salida puede ejecutar instrucciones de entrada y salida, lo que le confiere un control completo sobre las operaciones de entrada y salida. Un canal selector controla varios dispositivos de velocidad elevada y en un instante dado, se dedica a transferir datos a uno de esos dispositivos, es decir el canal de entrada y salida selecciona un dispositivo y efectúa la transferencia de datos. Cada dispositivo o pequeño grupo de dispositivos es manejado por un controlador o módulo de E/S, así el canal de entrada y salida se utiliza en lugar de la CPU para controlar estos controladores de E/S. </P>
+
+<h1>1.2.4 Buses</h1>
+<P>BUS: Elemento fundamental de intercomunicación en la arquitectura de Von Newmann. Se define mediante: </P>
+<P>– Número y tipo de líneas que lo componen. </P>
+<P>– Protocolo de transmisión de información. </P>
+<P>Consta de un camino que permite comunicar selectivamente un cierto número de componentes o dispositivos, de acuerdo a unas ciertas reglas o normas de conexión. </P>
+<P>El bus incluye los conceptos de enlace y conmutador, ya que permite en cada momento seleccionar los dispositivos que se conectan a través suyo. </P>
+<P>– Enlace: Elemento que permite transmitir información entre dos o más dispositivos. </P>
+<P>– Conmutador: Elemento que permite encaminar la información entre varios enlaces, activando unos e inhibiendo otros. </P>
+<P>– Multiplexado temporal: Utilización de las mismas líneas del bus para enviar en momentos distintos, informaciones distintas. En estos buses de incluyen señales adicionales para identificar qué información está circulando por el bus en cada momento. </P>
+
+<h2>1.2.4.1 Tipos de buses </h2>
+<P>SERIE y PARALELO: los primeros transmiten bit a bit y los segundos varios bits a la vez. </P>
+<P>• MULTIPLEXADOS y NO MULTIPLEXADOS o DEDICADOS: los multiplexados realizan diferentes funciones en función de las necesidades del momento. </P>
+<P>• Ejemplo: bus compartido para direcciones y datos ahorro en Hardware y por lo tanto en costos.  Tipos de Buses </P>
+<P>• CENTRALIZADOS y DISTRIBUIDOS: necesidad de determina	r qué elemento transmite y cuál recibe. Generalmente existe administración centralizada por la CPU o procesador. </P>
+<P>• SÍNCRONOS y ASÍNCRONOS (temporización): cómo ocurren los diferentes eventos (comienzo, fin,...) implicados en la transmisión de información. </P>
+
+
+<h1>1.2.5 Interrupciones</h1>
+<P>Hay tres tipos de interrupciones: Reset del sistema, no enmascarables (NMI) y enmascarables. </P>
+<P>Las enmascarables puedes ser habilitadas o deshabilitadas individualmente o mediante el flag e habilitación general (GIE). Son generadas por periféricos con capacidad de interrumpir. </P>
+<P>En cambio las no enmascarables sólo puedes ser habilitadas o deshabilitadas individualmente (NMIIE, ACCVIE, OFIE). El flag de habilitación general no les afecta. </P>
+<P>Cuando una NMI es aceptada, todos los bits de NMI son automáticamente reseteados. La ejecución del programa empieza en la dirección almacenada en el vector de NMI, 0FFFCh. </P>
+<P>Una NMI puede ser generada por tres fuentes: Un flanco en el pin RST/NMI cuando está configurado en modo NMI; un fallo en el oscilador o condiciones de error con el cristal oscilador; violación acceso a la memoria flash, cuando se quiere leer o borrar la flash desde la memoria RAM mientras BUSY=1, escritura del registro de control 1 (FCTL1) mientras WAIT=0 o escritura registro de control 2 (FTL2) mientras BUSY=1. </P>
+<P>Cuando una interrupción es requerida por un periférico, está habilitada la interrupción y el bit GIE=1, se salta a la rutina de servicio a la interrupción.  </P>
+<P>Aceptación de una Interrupción el tiempo de aceptación de una interrupción son seis ciclos de reloj, contando desde la aceptación de la petición de interrupción hasta el inicio de la primera instrucción de la rutina de servicio a la interrupción. </P>
+
+<a href="unidad 1.html">
+<img src="imagenes/unidad1.png" width="150px" height="110px" alt="Unidad 1"></a>   
+
+<a href="unidad 2.html"> 
+<img src="imagenes/unidad2.png" width="150px" height="110px" alt="Unidad 2"></a>     
+
+<a href="unidad 3.html">
+<img src="imagenes/unidad3.png" width="150px" height="110px" alt="Unidad 3"></a>     
+
+<a href="unidad 4.html">
+<img src="imagenes/unidad4.png" width="150px" height="110px" alt="Unidad 4"></a>    
+
+
+<a href="index.html">
+<center><img src="imag/descargar.png" width="150px" height="110px" alt="Inicio"></a><center>    
+
+</center>
+
+
+</body>
+
+</html>
